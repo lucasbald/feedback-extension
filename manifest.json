@@ -1,0 +1,13 @@
+{
+    "manifest_version": 3,
+    "name": "Feedback Extension",
+    "description": "This extension easily store your feedback =)",
+    "version": "0.0.1",
+    "action": {
+        "default_title": "Click Me",
+        "default_popup": "index.html"
+    },
+    "permissions": [
+        "tabs"
+    ]
+}
