@@ -2,6 +2,7 @@
     "manifest_version": 3,
     "name": "Feedback Extension",
     "description": "This extension easily store your feedback =)",
+    "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAr+ge71piwvnzsAP/Z/+hBjo7gKzqI/KQ0HzucaZrD7hmVYpGKlWgwGfDoURwpYPWusXOV6X7Ura40RArKQ/dGyPYR+bEf7DMZtT5sm/kYR+RTiQbQfbCLgOX+tU2xKi8L8w6hTU9Nwg34d4hV9KVinkKZftaHVGmjvjRNoXaPKc0B6IoLVXF+FshRXajqxa3pGPbKbXpmnBRjnbjkF23QLpxFnakJavuWHUJ8gGneuOTa0Yh3V09mA/HF9IuX0X26NJ7nUVAxH3PH7dFoCqT9o1pcNw9BM7cG3be6dde55rjjZVYy5JqqFB3+zW8fRfSrAtzyziF8gHPnFHUpPhZ2wIDAQAB",
     "version": "0.0.1",
     "action": {
         "default_title": "Click Me",
