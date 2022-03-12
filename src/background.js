@@ -20,5 +20,12 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         .then((res) => res.json())
         .then((res) => console.log(res));
     });
+  } else if (request.message === "post_form") {
+    const { people, action, cluster, reference, date } = request.fields;
+    console.log(people);
+    console.log(action);
+    console.log(cluster);
+    console.log(reference);
+    console.log(date);
   }
 });
