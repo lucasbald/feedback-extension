@@ -13,7 +13,7 @@
         "identity"
     ],
     "background": {
-        "service_worker": "./src/background.js"
+        "service_worker": "./src/js/background.js"
     },
     "oauth2": {
         "client_id": "144359537560-tuu1mesdo3gdr6lofn1rhv11al6g66us.apps.googleusercontent.com",
