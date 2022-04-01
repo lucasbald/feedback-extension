@@ -13,7 +13,7 @@
         "identity"
     ],
     "background": {
-        "service_worker": "./src/background.js"
+        "service_worker": "./src/js/background.js"
     },
     "icons": {
         "16": "./src/assets/images/icon-extension/feedbackExtension_16x16.png",
