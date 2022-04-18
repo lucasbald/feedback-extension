@@ -42,4 +42,5 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   else if (request.message === 'spread_sheet') getSpreadsheet();
   else if (request.message === 'post_form') postForm(request);
   else defaultCallback();
+  return true;
 });
