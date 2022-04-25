@@ -1,6 +1,8 @@
 /* global chrome */
 
 const API_KEY = 'AIzaSyCJ_vChC1Da_TnhAG3qnBPcNTttxmuYiko';
+const SPREADSHEET_URL =
+  'https://docs.google.com/spreadsheets/d/1UBEid46AWIBr3sXT2F6AKYKVXNeVutZhJKZeXK84mUk/edit?usp=sharing';
 
 const defaultCallback = () => {
   console.log('Command not found!');
@@ -12,54 +14,44 @@ const getAuthToken = () => {
   });
 };
 
-const getSpreadsheet = () => {
-  chrome.identity.getAuthToken({ interactive: true }, function (token) {
-    const fetch_url = `https://sheets.googleapis.com/v4/spreadsheets/1EEivp2ETb-SvN5S3fKt8Cg7qyP9aasmlArtrKzNtuL4/values/A1?key=${API_KEY}`;
-    const fetch_options = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      method: 'GET',
-    };
+const getUrlId = () => {
+  const URL_ID = SPREADSHEET_URL.split('/')[5];
 
-    fetch(fetch_url, fetch_options)
-      .then((res) => res.json())
-      .then((res) => console.log(res));
-  });
+  return URL_ID;
 };
 
-const postForm = (request) => {
-  const RANGE = 'feedback!A3:E4';
-  const SPREADSHEET_ID = '1SjXKfl-Hn7W8suslgtY5eG2V1gXJlCopp3F-tDYUGZw';
+const postForm = request => {
+  const RANGE = 'feedback!A3:F3';
+  const SPREADSHEET_ID = getUrlId();
   const QUERY_PARAM = '?valueInputOption=RAW';
   const { people, action, cluster, reference, date } = request.fields;
   const status = 'Not Mentioned';
 
-    chrome.identity.getAuthToken({ interactive: true }, function (token) {
-      const fetch_url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}:append${QUERY_PARAM}`;
-      const fetch_options = {
-        headers: {
-          Authorization: `Bearer ${token}`
-        },
-        method: 'POST',
-        body: JSON.stringify({
-          range: RANGE,
-          values: [
-            [
-              people,
-              action,
-              cluster,
-              reference,
-              date,
-              status
-            ]
+  chrome.identity.getAuthToken({ interactive: true }, function (token) {
+    const fetch_url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}:append${QUERY_PARAM}`;
+    const fetch_options = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      method: 'POST',
+      body: JSON.stringify({
+        range: RANGE,
+        values: [
+          [
+            people, 
+            action, 
+            cluster, 
+            reference, 
+            date, 
+            status
           ]
-        })
-      }
+        ],
+      }),
+    };
 
-      fetch(fetch_url, fetch_options)
-        .then((res) => res.json())
-        .then((res) => console.log(res))
+    fetch(fetch_url, fetch_options)
+      .then(res => res.json())
+      .then(res => console.log(res));
   });
 };
 
