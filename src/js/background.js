@@ -29,10 +29,11 @@ const getSpreadsheet = () => {
 };
 
 const postForm = (request) => {
-  const RANGE = 'feedback!A3:E3'
-  const SPREADSHEET_ID = '1SjXKfl-Hn7W8suslgtY5eG2V1gXJlCopp3F-tDYUGZw'
-  const QUERY_PARAM = '?valueInputOption=RAW'
+  const RANGE = 'feedback!A3:E4';
+  const SPREADSHEET_ID = '1SjXKfl-Hn7W8suslgtY5eG2V1gXJlCopp3F-tDYUGZw';
+  const QUERY_PARAM = '?valueInputOption=RAW';
   const { people, action, cluster, reference, date } = request.fields;
+  const status = 'Not Mentioned';
 
     chrome.identity.getAuthToken({ interactive: true }, function (token) {
       const fetch_url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}:append${QUERY_PARAM}`;
@@ -49,7 +50,8 @@ const postForm = (request) => {
               action,
               cluster,
               reference,
-              date
+              date,
+              status
             ]
           ]
         })
@@ -66,5 +68,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   else if (request.message === 'spread_sheet') getSpreadsheet();
   else if (request.message === 'post_form') postForm(request);
   else defaultCallback();
+
   return true;
 });
