@@ -1,8 +1,9 @@
 /* global chrome */
 
 const API_KEY = 'AIzaSyCJ_vChC1Da_TnhAG3qnBPcNTttxmuYiko';
-const SPREADSHEET_URL =
-  'https://docs.google.com/spreadsheets/d/1UBEid46AWIBr3sXT2F6AKYKVXNeVutZhJKZeXK84mUk/edit?usp=sharing';
+// 'https://docs.google.com/spreadsheets/d/1UBEid46AWIBr3sXT2F6AKYKVXNeVutZhJKZeXK84mUk/edit?usp=sharing';
+
+let spreadsheetId = ''
 
 const defaultCallback = () => {
   console.log('Command not found!');
@@ -14,18 +15,14 @@ const getAuthToken = () => {
   });
 };
 
-const getUrlId = () => {
-  const URL_ID = SPREADSHEET_URL.split('/')[5];
-
-  return URL_ID;
-};
-
 const postForm = request => {
   const RANGE = 'feedback!A3:F3';
-  const SPREADSHEET_ID = getUrlId();
+  const SPREADSHEET_ID = spreadsheetId;
   const QUERY_PARAM = '?valueInputOption=RAW';
   const { people, action, cluster, reference, date } = request.fields;
   const status = 'Not Mentioned';
+
+  console.log(SPREADSHEET_ID);
 
   chrome.identity.getAuthToken({ interactive: true }, function (token) {
     const fetch_url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}:append${QUERY_PARAM}`;
@@ -55,10 +52,16 @@ const postForm = request => {
   });
 };
 
+const postSpreadsheetUrl = request => {
+  spreadsheetId = request.spreadsheetURL.split('/')[5];
+
+  console.log(spreadsheetId);
+};
+
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.message === 'get_auth_token') getAuthToken();
-  else if (request.message === 'spread_sheet') getSpreadsheet();
   else if (request.message === 'post_form') postForm(request);
+  else if (request.message === 'post_spreadsheet_url') postSpreadsheetUrl(request);
   else defaultCallback();
 
   return true;
