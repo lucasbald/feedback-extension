@@ -54,8 +54,6 @@ const postForm = request => {
 
 const postSpreadsheetUrl = request => {
   spreadsheetId = request.spreadsheetURL.split('/')[5];
-
-  console.log(spreadsheetId);
 };
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
