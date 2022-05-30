@@ -22,8 +22,6 @@ const postForm = request => {
   const { people, action, cluster, reference, date } = request.fields;
   const status = 'Not Mentioned';
 
-  console.log(SPREADSHEET_ID);
-
   chrome.identity.getAuthToken({ interactive: true }, function (token) {
     const fetch_url = `https://sheets.googleapis.com/v4/spreadsheets/${SPREADSHEET_ID}/values/${RANGE}:append${QUERY_PARAM}`;
     const fetch_options = {
