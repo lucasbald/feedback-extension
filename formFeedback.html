@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Feedback Extension</title>
+  <link rel="stylesheet" href="./src/styles/reset.css">
+  <link rel="stylesheet" href="./src/styles/styles.css">
+</head>
+
+<body>
+  <div class="container-extension">
+    <h1 class="mainTitle">Feedback Extension</h1>
+
+    <form action="" id="feedbackForm">
+
+      <div>
+        <label for="people">People</label>
+        <input id="people" type="text" placeholder="Tom"/>
+      </div>
+
+      <label for="action">Action</label>
+      <textarea name="" id="action" placeholder="Developed something really important to the project..." rows="3"></textarea>
+
+      <label for="cluster">Cluster</label>
+      <select name="cluster" id="cluster">
+        <option value="Coding Excellence">Coding Excellence</option>
+        <option value="Continuous Delivery">Continuous Delivery</option>
+        <option value="Quality">Quality</option>
+        <option value="Architecture & Design">Architecture & Design</option>
+        <option value="Process">Process</option>
+        <option value="Teamwork">Teamwork</option>
+        <option value="Soft Skills">Soft Skills</option>
+      </select>
+
+      <label for="reference">Reference</label>
+      <input id="reference" type="text" placeholder="References"/>
+
+      <label for="date">Date</label>
+      <input id="date" type="date" value="2018-07-22"/>
+
+      <button class="btnSubmit" id="send" type="submit">Send</button>
+    </form>
+
+    <script src="src/js/formFeedback.js"></script>
+    <script src="src/js/date.js"></script>
+  </div>
+</body>
+
+</html>
