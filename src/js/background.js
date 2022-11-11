@@ -1,7 +1,6 @@
 /* global chrome */
 
 const API_KEY = 'AIzaSyCJ_vChC1Da_TnhAG3qnBPcNTttxmuYiko';
-// 'https://docs.google.com/spreadsheets/d/1UBEid46AWIBr3sXT2F6AKYKVXNeVutZhJKZeXK84mUk/edit?usp=sharing';
 
 let spreadsheetId = ''
 
